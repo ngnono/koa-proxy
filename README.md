@@ -70,6 +70,23 @@ app.use(proxy({
 }));
 ```
 
+Or you can before request edit this.opts
+
+```
+proxy({
+  host: proxyConfig.toHost,
+  match: /^\/api\//,
+  beforeRequestFn: function (opts) {
+    opts = opts || {};
+    opts.followRedirect = false;
+
+    console.log(opts);
+
+    return opts;
+  }
+});
+```
+
 ## LICENSE
 
 Copyright (c) 2014 popomore. Licensed under the MIT license.

@@ -38,6 +38,11 @@ module.exports = function(options) {
     // set 'Host' header to options.host (without protocol prefix)
     if (options.host) opt.headers.host = options.host.slice(options.host.indexOf('://')+3)
 
+    //add before request edit opts
+    if(options.beforeRequestFn){
+      opt = options.beforeRequestFn(opt);
+    }
+
     var requestThunk = request(opt);
 
     if (parsedBody) {
